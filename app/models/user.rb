@@ -9,4 +9,8 @@ class User < ApplicationRecord
   has_and_belongs_to_many :voted_memes, join_table: "memes_users", class_name: "Meme"
   has_many :comments
   has_many :commented_memes, through: :comments, source: :meme
+
+  # Validations
+  validates :username, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true
 end
