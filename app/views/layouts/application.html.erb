@@ -13,13 +13,22 @@
 
 <main class="main-content">
   <header>
+    <%= link_to root_path do %>
+      <%= image_tag "memeable.png" %>
+    <% end %>
+
     <nav>
+      <%= link_to "By category", categories_path %>
+      <%= link_to "By popularity", popular_path %>
+      <%= link_to "Search", "" %>
+
       <% if user_signed_in? %>
+        <%= link_to "Create meme", new_meme_path %>
         Welcome, <%= current_user.username %>
+        <%= link_to "My Account", "TBD" %>
         <%= link_to "Logout", destroy_user_session_path, method: :delete %>
       <% else %>
-        <%= link_to "Sign in", user_session_path %>
-        <%= link_to "Sign up", new_user_registration_path %>
+        <%= link_to "Login", user_session_path %>
       <% end %>
     </nav>
   </header>
