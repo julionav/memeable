@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # Associations
-  has_many :memes
+  has_many :memes, foreign_key: :owner_id
   has_many :votes
   has_many :voted_memes, through: :votes, source: :meme
   has_many :comments
