@@ -1,0 +1,6 @@
+<%= link_to meme_path(meme) do %>
+  <figure>
+    <%= image_tag meme.url_source, alt: meme.title, width: "200px" %>
+    <figcaption>Created by: <%= meme.owner.username %></figcaption>
+  </figure>
+<% end %>

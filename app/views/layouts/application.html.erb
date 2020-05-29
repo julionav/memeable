@@ -11,21 +11,28 @@
 
 <body>
 
-<header>
-  <nav>
-    <% if user_signed_in? %>
-      Welcome, <%= current_user.username %>
-      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-    <% else %>
-      <%= link_to "Sign in", user_session_path %>
-      <%= link_to "Sign up", new_user_registration_path %>
-    <% end %>
-  </nav>
-</header>
+<main class="main-content">
+  <header>
+    <nav>
+      <% if user_signed_in? %>
+        Welcome, <%= current_user.username %>
+        <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+      <% else %>
+        <%= link_to "Sign in", user_session_path %>
+        <%= link_to "Sign up", new_user_registration_path %>
+      <% end %>
+    </nav>
+  </header>
 
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
+  <p class="notice"><%= notice %></p>
+  <p class="alert"><%= alert %></p>
 
-<%= yield %>
+  <%= yield %>
+</main>
+
+<footer class="signature">
+  Made by Julio
+</footer>
+
 </body>
 </html>

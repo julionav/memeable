@@ -1,7 +1,22 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+# Create admin user
+User.create!(username: 'admin', password: '123456', email: 'admin@example.com')
+
+# add some categories
+categories = ['Developer', 'Other']
+Category.create!(categories.map { |ctg| { name: ctg } })
+
+# add some memes
+
+(1..10).each do |num|
+  fake_meme = {
+    title: "Meme Title #{num}",
+    type: "image",
+    category: [Category.first, Category.second][rand * 2],
+    created_at: (rand * 3).days.ago,
+    # add random amount of votes
+    votes_count: rand * 5,
+    url_source: "http://localhost:3000/memes/#{num}.png",
+    owner: User.first
+  }
+  Meme.create!(fake_meme)
+end
