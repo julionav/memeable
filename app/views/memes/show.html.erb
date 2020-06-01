@@ -8,7 +8,11 @@
 
 <div>
   Votes: <%= @meme.votes_count %>
-  <% unless user_signed_in? %>
+  <% if user_signed_in? %>
+    <% unless @meme.has_voted?(current_user) %>
+      <%= button_to "Vote!", meme_votes_path(@meme), method: :post %>
+    <% end %>
+  <% else %>
     Login to vote!
   <% end %>
 </div>

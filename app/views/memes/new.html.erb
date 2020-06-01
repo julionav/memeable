@@ -1,2 +1,33 @@
-<h1>Memes#new</h1>
-<p>Find me in app/views/memes/new.html.erb</p>
+<h1>Create a meme!</h1>
+
+<%= form_with model: @meme, local: true do |f| %>
+  <ul>
+    <% @meme.errors.full_messages.each do |message| %>
+      <li>
+        <%= message %>
+      </li>
+    <% end %>
+  </ul>
+
+  <p>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </p>
+
+  <p>
+    <%= f.label :url_source %>
+    <%= f.text_field :url_source %>
+  </p>
+
+  <p>
+    <%= f.label :type %>
+    <%= f.select :type, Meme.types %>
+  </p>
+
+  <p>
+    <%= f.label :category_id %>
+    <%= f.collection_select :category_id, Category.all, :id, :name %>
+  </p>
+
+  <%= f.submit "Create!" %>
+<% end %>
